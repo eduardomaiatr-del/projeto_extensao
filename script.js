@@ -8,7 +8,12 @@ const tamanhoFonte = document.getElementById("tamanhoFonte");
 
 try {
   const nivelSalvo = Number(localStorage.getItem("nivelDaFonte"));
-  if (Number.isInteger(nivelSalvo) && nivelSalvo >= 0 && nivelSalvo < niveisDeFonte.length) {
+
+  if (
+    Number.isInteger(nivelSalvo) &&
+    nivelSalvo >= 0 &&
+    nivelSalvo < niveisDeFonte.length
+  ) {
     nivelAtual = nivelSalvo;
   }
 } catch (erro) {
@@ -17,15 +22,16 @@ try {
 
 function atualizarFonte() {
   const escala = niveisDeFonte[nivelAtual];
+
   raiz.style.setProperty("--escala", escala);
   tamanhoFonte.textContent = Math.round(escala * 100) + "%";
+
   diminuirFonte.disabled = nivelAtual === 0;
   aumentarFonte.disabled = nivelAtual === niveisDeFonte.length - 1;
 
   try {
     localStorage.setItem("nivelDaFonte", String(nivelAtual));
   } catch (erro) {
-    // O controle continua funcionando se o navegador bloquear o armazenamento.
   }
 }
 
@@ -67,8 +73,9 @@ visualizador.addEventListener("click", function (evento) {
   }
 });
 
-// Cole entre as aspas o endereço enviado pelo Google Forms.
-const LINK_DO_FORMULARIO = "https://docs.google.com/forms/d/e/1FAIpQLSd5gIDdjvZz0p85FSTIq7V8-kYsvO5hFTtKWknFDFSIioUO2g/viewform";
+const LINK_DO_FORMULARIO =
+  "https://docs.google.com/forms/d/e/1FAIpQLSd5gIDdjvZz0p85FSTIq7V8-kYsvO5hFTtKWknFDFSIioUO2g/viewform";
+
 const linkFormulario = document.getElementById("linkFormulario");
 
 if (LINK_DO_FORMULARIO) {
